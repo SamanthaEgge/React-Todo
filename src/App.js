@@ -12,7 +12,7 @@ class App extends React.Component {
           {
             task: 'Pet a dog',
             id: 1,
-            completed: true
+            completed: false
         },
         {
             task: 'Pet a second dog',
@@ -44,6 +44,23 @@ addTodo = (event) => {
     })
 };
 
+toggleTodo = (id) => {
+    this.setState(prevState => {
+        return {
+          todos: prevState.todos.map(task => {
+            if (task.id === id) {
+              return {
+                ...task,
+                completed: !task.completed
+              };
+            } else {
+              return task;
+            }
+          })
+        };
+    });
+}
+
 clearCompleted = (event) => {
     event.preventDefault();
     this.setState({
@@ -56,7 +73,8 @@ render () {
         <div>
             <h2>Todo List</h2>
             <TodoList 
-            todos={this.state.todos} />
+            todos={this.state.todos} 
+            toggleTodo={this.toggleTodo} />
             <TodoForm 
             todoInput={this.state.todoInput}
             changeHandler={this.changeHandler}
