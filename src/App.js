@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TodoList from './components/TodoComponents/TodoList';
+import TodoForm from './components/TodoComponents/TodoForm'
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -11,7 +12,7 @@ class App extends React.Component {
           {
             task: 'Pet a dog',
             id: 1,
-            completed: false
+            completed: true
         },
         {
             task: 'Pet a second dog',
@@ -19,10 +20,11 @@ class App extends React.Component {
             completed: false
         }
       ],
-    newTodo = ''
+
+    newTodo: ''
 };
 
-handleNewInput = (event) => {
+changeHandler = (event) => {
     this.setState({ 
         newTodo: event.target.value
     });
@@ -30,32 +32,36 @@ handleNewInput = (event) => {
 
 addTodo = (event) => {
     event.preventDefault();
-    const updatedTodoList = this.state.todos;
-    updatedTodoList.push(this.state.newTodo);
+    const addedTodo = {
+        task: this.state.addedTodo,
+        id: Date.now(),
+        completed: false
+    };
     this.setState({
-        todos: [...this.state.todos, updatedTodoList]
+        todos: [...this.state.todos, addedTodo],
+        newTodo: '',
+        // [event.target.value]: event.target.value
     })
-
-    // Can also elimate const updatedTodo and push with the following:
-    // this.setState({
-
-    // })
 };
+
+clearCompleted = (event) => {
+    event.preventDefault();
+    this.setState({
+        todos: this.state.todos.filter((task) => !task.complete)
+    })
+}
 
 render () {
     return (
         <div>
-            {this.state.todos.map((todo, e) => <Todo key={e} todo={todo} />)}
-            <form onSubmit={this.addTodo}>
-                <input
-                    type='text'
-                    placeholder='...New Task'
-                    onChange={this.handleNewInput}
-                    value={this.state.newTodo}
-                    name='New Todo'/>
-
-                    <button onClick={this.addTodo}>Add Todo Item</button>
-            </form>
+            <h2>Todo List</h2>
+            <TodoList 
+            todos={this.state.todos} />
+            <TodoForm 
+            newTodo={this.state.newTodo}
+            changeHandler={this.state.changeHandler}
+            addTodo={this.state.addTodo}
+            clearCompleted={this.state.clearCompleted} />
         </div>
     );
 }
