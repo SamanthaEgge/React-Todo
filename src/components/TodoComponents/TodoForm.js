@@ -11,6 +11,7 @@ const TodoForm = (props) => {
                 placeholder='... New Task'
                 value={props.todoInput}
                 onChange={props.changeHandler} />
+                <br />
             <button className='submit-button'>Submit</button>
             <button className='clear-button' onClick={props.clearCompleted}>Clear</button>
         </form>

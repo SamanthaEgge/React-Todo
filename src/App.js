@@ -72,17 +72,21 @@ clearCompleted = (event) => {
 render () {
     return (
         <div className='container'>
-            <h1 className='list-header'>Night Notes</h1>
-            <TodoForm 
-                todoInput={this.state.todoInput}
-                changeHandler={this.changeHandler}
-                addTodo={this.addTodo}
-                clearCompleted={this.clearCompleted} />
-
-            <TodoList 
-                todos={this.state.todos} 
-                toggleTodo={this.toggleTodo} />
             
+            <h1 className='list-header'>Night Notes</h1>
+            <div className='form-container'>
+                <TodoForm 
+                    todoInput={this.state.todoInput}
+                    changeHandler={this.changeHandler}
+                    addTodo={this.addTodo}
+                    clearCompleted={this.clearCompleted} />
+            </div>
+        
+            <div className='list-container'>
+                <TodoList 
+                    todos={this.state.todos} 
+                    toggleTodo={this.toggleTodo} />
+            </div>
         </div>
     );
 }
