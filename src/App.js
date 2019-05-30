@@ -40,15 +40,14 @@ addTodo = (event) => {
     };
     this.setState({
         todos: [...this.state.todos, newTodo],
-        newTodo: '',
-        // [event.target.value]: event.target.value
+        todoInput: '',
     })
 };
 
 clearCompleted = (event) => {
     event.preventDefault();
     this.setState({
-        todos: this.state.todos.filter((task) => !task.complete)
+        todos: this.state.todos.filter((task) => !task.completed)
     })
 }
 
