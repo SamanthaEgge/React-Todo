@@ -21,24 +21,25 @@ class App extends React.Component {
         }
       ],
 
-    newTodo: ''
+    todoInput: ''
 };
 
 changeHandler = (event) => {
+    event.preventDefault()
     this.setState({ 
-        newTodo: event.target.value
+        [event.target.name]: event.target.value
     });
 };
 
 addTodo = (event) => {
     event.preventDefault();
-    const addedTodo = {
-        task: this.state.addedTodo,
+    const newTodo = {
+        task: this.state.todoInput,
         id: Date.now(),
         completed: false
     };
     this.setState({
-        todos: [...this.state.todos, addedTodo],
+        todos: [...this.state.todos, newTodo],
         newTodo: '',
         // [event.target.value]: event.target.value
     })
@@ -58,10 +59,10 @@ render () {
             <TodoList 
             todos={this.state.todos} />
             <TodoForm 
-            newTodo={this.state.newTodo}
-            changeHandler={this.state.changeHandler}
-            addTodo={this.state.addTodo}
-            clearCompleted={this.state.clearCompleted} />
+            todoInput={this.state.todoInput}
+            changeHandler={this.changeHandler}
+            addTodo={this.addTodo}
+            clearCompleted={this.clearCompleted} />
         </div>
     );
 }
