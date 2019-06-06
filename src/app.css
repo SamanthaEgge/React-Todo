@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 18px;
+    background-color: #333333;
+}
+
+.list-header {
+    font-size: 36px
+}
+
+h1 {
+    text-align: center;
+    color: #00D5EE;
+    font-family: 'Permanent Marker';
+    font-weight: normal;
+    letter-spacing: 5px;
+}
+
+.list-container {
+    margin: 0 auto;
+}
